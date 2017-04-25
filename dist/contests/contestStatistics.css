@@ -1,0 +1,61 @@
+body{
+	background-image: url(torch.gif), url(torch.gif);
+	background-repeat: repeat-y, repeat-y;
+	background-position: 5% 0, 95% 0;
+	background-color: #000;
+}
+.wrapper{
+	width:100%;
+	max-width: 960px;
+	position:relative;
+	margin:0 auto;
+	color: #eee;
+	font-family:sans-serif;
+}
+.motivering{
+	display:block;
+	cursor:pointer;
+}
+.picked{
+	background:rgba(90,213,211,0.87);
+}
+p.hidden{
+	display:none;
+}
+#contestInfo {
+	width: 80%;
+	max-width: 400px;
+	text-align: center;
+	margin: 0 auto;
+}
+#contestInfo ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.contestLink a, .downloadLink {
+	margin: 0.25em auto;
+	padding: 1em 3em;
+	display: block;
+	list-style: none;
+	background: rgba(255,255,255,0.3);
+	transition: 350ms all ease-out;
+}
+.contestLink a:hover, .downloadLink:hover {
+	background: rgba(255,255,255,0.9);
+	color:#000;
+}
+.downloadLink {
+	margin-top: 2em;
+	text-decoration: none;
+	color: #eee;
+	font-weight: bold;
+}
+.winner {
+	background: #FFF;
+	text-align: left;
+	padding: 1em;
+}
+.winner p, .winner h3{
+	color:#333;
+}

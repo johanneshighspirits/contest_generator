@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Contest Generator</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="css/contest.css" />
+
+<style type="text/css">
+body {
+  background:#C8EFF5;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #333;
+}
+.siteWrapper{
+  position: relative;
+  width: 100%;
+  max-width: 940px;
+  margin:0 auto;
+  padding:100px 0;
+  background:#FFF;
+}
+.tl-contestGenerator p,
+.tl-contestGenerator label,
+.questionAdder {
+  color: #333;
+	text-align: center;
+	text-decoration: none;
+}
+.tl-contestGenerator label,
+.tl-contestGenerator input,
+.questionAdder {
+	margin: 0;
+	padding: 0.5em 1em;
+  font-size: 12px;
+}
+.tl-contestGenerator textarea {
+  font-size: 12px;
+}
+.fourth {
+  display: inline-block;
+  width: 25%;
+}
+.half {
+  width: 50%;
+}
+.half, .fourth {
+  margin: 0.5em 0 !important;
+  padding: 1em 0 !important;
+}
+.questionAdder {
+	display: inline-block;
+}
+.tl-contestGenerator label:hover, .questionAdder:hover {
+	background: #eee;
+	color: #000;
+}
+.tl-contestGenerator input[type=text], 
+.tl-contestGenerator textarea {
+	display: block;
+	width: 60%;
+	margin: 0.25em auto;
+}
+.tl-contestGenerator textarea {
+  height: 6em;
+}
+.block {
+	display: block;
+}
+.tl-contestGenerator input[type=radio] {
+	display: none;
+}
+
+.centered {
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	width: 60%;
+}
+.centered > .tl-contestGenerator label {
+	margin-left: 2%;
+	margin-right: 2%;
+	width: 21%;
+	padding-left: 0;
+	padding-right: 0;
+}
+.selected, .tl-contestGenerator label.selected:hover {
+	background: #338695;
+	color:#FFF;
+}
+.fading {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out;
+}
+.visible {
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+}
+.submitLabel {
+  display: block;
+  background: #338695;
+  color: #FFF;
+  clear: both;
+  float: none;
+}
+.submitLabel input {
+  position: absolute;
+  visibility: hidden;
+}
+.fit2, .fit3, .fit4 {
+  float: left;
+}
+.tl-contestGenerator .fit2 input[type=text], 
+.tl-contestGenerator .fit2 textarea,
+.tl-contestGenerator .fit3 input[type=text], 
+.tl-contestGenerator .fit3 textarea,
+.tl-contestGenerator .fit4 input[type=text], 
+.tl-contestGenerator .fit4 textarea {
+  width: auto;
+}
+.fit2 {
+  width: 50%;
+}
+.fit3 {
+  width: 33%;
+}
+.fit4 {
+  width: 25%;
+}
+.redText {
+  color: #FF5555;
+  font-weight: bold;
+}
+.suggestions{
+  margin-top: 1px;
+  list-style: none;
+  background: #338695;
+  color: #FFF;
+}
+.suggestions li {
+  padding: 1em 0;
+}
+</style>
+</head>
+
+<body>
+<div class="siteWrapper">
+<!-- start -->
+
+<div id="tl-contestGenerator"></div>
+<div id="outputHtml">
+<!-- #START#
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contest</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/contest.css" />
+</head>
+<body style="background:url(contest-bg.jpg) no-repeat top center;">
+<div id="tl-contest" class="tl-contest"></div>
+</body>
+</html>
+<script type="text/javascript">
+var lang = window.location.search.replace("?", "").split("=")[1];
+$('document').ready(function(){
+  if (lang === undefined) {
+    console.error("Remember to set language var in iFrame url. Example: '" + window.location.href + "?lang=SE'");
+  }
+  function updateHeight(scrollToTarget) {
+    var bodyHeight = parseInt($('#tl-contest').outerHeight(true)) + 20;
+    message = {
+      "iFrameHeight": bodyHeight,
+    };
+    if (scrollToTarget !== undefined) {
+      message.scrollToTarget = scrollToTarget;
+    }
+    window.parent.postMessage(
+      message,
+      "http://www.travellink." + lang.toLowerCase()
+      );
+  }
+  updateHeight();
+});
+var isContest = true;
+#END# -->
+</div>
+<div id="editorial">
+<!-- #START#
+<script type="text/javascript">
+// Resize iFrame to content size
+function listener(event) {
+  if(event.origin !== "http://travellink-campaign.com") {
+    return;
+  }else if(event.data.scrollToTarget !== undefined) {
+    $('html,body').animate({scrollTop: event.data.scrollToTarget + $("#contest").offset().top - 20}, 200);
+  }
+  document.getElementById('contest').getElementsByTagName('iframe')[0].style.height = event.data.iFrameHeight + "px";
+}
+if (window.addEventListener) {
+  addEventListener("message", listener, false);
+}else{
+  attachEvent("onmessage", listener);
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function(e){
+  var today = new Date();
+  var endDate = new Date(#END_DATE_YEAR#, #END_DATE_MONTH#, #END_DATE_DAY#);
+  if(today < endDate){
+    $("#contest").html('<iframe height="900" src="http://travellink-campaign.com/#LOWERCASE_LANG#/#CAMPAIGN_NAME#/?lang=#UPPERCASE_LANG#" frameborder="0" scrolling="no" seamless="seamless"></iframe>');
+  }
+});
+</script>
+<style type="text/css">
+.turistbyra p, #contest p{
+    font-size: 12px;
+    line-height: 20px;
+}
+.turistbyra .tl-container{
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.turistbyra .tl-textContainer{
+    display: block;
+    position: relative;
+    width: 65%;
+    float: left;
+}
+.turistbyra .tl-imageContainer{
+    display: block;
+    height: 100%;
+    width: 33%;
+}
+.turistbyra .tl-imageContainer img{
+    width: 100%;
+}
+.turistbyra .tl-imageLeft{
+    float: left;
+    margin-right: 2%;
+}
+.turistbyra .tl-imageRight{
+    float: right;
+    margin-top: 22px;
+    margin-left: 2%;
+}
+#contest{
+    height: 100%;
+    overflow: hidden;
+}
+#contest iframe{
+    display: block;
+    position: relative;
+    height: 900px;
+    width: 100%;
+    margin: 0 auto;
+    background: transparent;
+}
+</style>
+<div class="turistbyra">
+  <div id="contest"></div>
+</div>
+#END# -->
+</div>
+<script type="text/javascript">var isContest = false;</script>
+<script type="text/javascript" src="scripts/bundle.js"></script>
+
+</div>
+</body>
+</html>

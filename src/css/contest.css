@@ -1,0 +1,265 @@
+body {
+  margin: 0;
+  background: #FFF no-repeat top center;
+}
+/* font */
+@font-face {
+  font-family: 'SchulbuchNord-Normal';
+  src: url('/followyourheart/css/font/SchulbuchNord-Normal.eot?#iefix') format('embedded-opentype'),  url('/followyourheart/css/font/SchulbuchNord-Normal.otf')  format('opentype'),
+       url('/followyourheart/css/font/SchulbuchNord-Normal.woff') format('woff'), url('/followyourheart/css/font/SchulbuchNord-Normal.ttf')  format('truetype'), url('/followyourheart/css/font/SchulbuchNord-Normal.svg#SchulbuchNord-Normal') format('svg');
+}
+@font-face {
+  font-family: 'SchulbuchNord-Fett';
+  src: url('/followyourheart/css/font/SchulbuchNord-Fett.eot?#iefix') format('embedded-opentype'),  url('/followyourheart/css/font/SchulbuchNord-Fett.otf')  format('opentype'),
+       url('/followyourheart/css/font/SchulbuchNord-Fett.woff') format('woff'), url('/followyourheart/css/font/SchulbuchNord-Fett.ttf')  format('truetype'), url('/followyourheart/css/font/SchulbuchNord-Fett.svg#SchulbuchNord-Fett') format('svg');
+}
+.splash {
+  color: #FFF;
+}
+.splash a {
+  display: block;
+  text-align: right;
+  color: #FFF;
+}
+.tl-contest, input, textarea, .splash a {
+  font-family: 'SchulbuchNord-Normal', Open Sans, sans-serif;
+  font-size: 15px;
+}
+b {
+  font-family: 'SchulbuchNord-Fett', Open Sans, sans-serif;
+  font-weight: bold;
+}
+.tl-contest {
+  padding: 20px;
+}
+/* questions */
+/* questions container */
+.tl-contest-questions {
+  display:block;
+  position: relative;
+  height: 600px;
+  -webkit-perspective-origin: 480px 100px;
+  -webkit-perspective: 300px;/* Chrome, Safari, Opera  */
+  -moz-perspective-origin: 480px 100px;
+  -moz-perspective: 300px;/* Chrome, Safari, Opera  */
+  perspective-origin: 480px 100px;
+  perspective: 300px;/* Chrome, Safari, Opera  */
+  padding: 0;
+  margin: 0;
+}
+/* question container */
+.tl-contest-questions li {
+  display: block;
+  position: absolute;
+  text-align: center;
+  top: 0%;
+  left:50%;
+  margin: 20px auto 20px -50%;
+  width: 96%;
+  background: rgba(255,255,255,0.8);
+  -webkit-transition:all ease-in-out 400ms;
+  -moz-transition:all ease-in-out 400ms;
+  transition:all ease-in-out 400ms;
+  padding: 2%;
+}
+.tl-contest-questions li.hiddenLeft, .tl-contest-questions li.hiddenRight {
+  border-color: rgba(178,237,255,0);
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+.tl-contest-questions li.hiddenLeft {
+  top: 100%;
+  left: 50%;
+  -webkit-transform: rotate3d(1,0,0,-90deg) scale(0,0);
+  -moz-transform: rotate3d(1,0,0,-90deg) scale(0,0);
+  transform: rotate3d(1,0,0,-90deg) scale(0,0);
+}
+.ie9 .tl-contest-questions li.hiddenLeft {
+  left:-720px;
+}
+.tl-contest-questions li.active {
+  left: 50%;
+  z-index:10;
+  border-color: rgba(178,237,255,1.00);
+}
+.tl-contest-questions li.hiddenRight {
+  left: 80%;
+  -webkit-transform: rotate3d(0,1,0,45deg) scale(0,0);
+  -moz-transform: rotate3d(0,1,0,45deg) scale(0,0);
+  transform: rotate3d(0,1,0,45deg) scale(0,0);
+}
+.ie9 .tl-contest-questions li.hiddenRight {
+  left:1720px;
+}
+
+.tl-contest h1 {
+    font-size: 20px;
+}
+
+.tl-contest-questions li img {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.tl-contest .radioLabel {
+    display: inline-block;
+    width: 31%;
+    background: #338695;
+    margin: 1%;
+    border-radius: 5px;
+    padding: 10px 0;
+    color: #FFF;
+}
+.tl-contest .radioLabel:hover {
+  background: #3D9CAD;
+}
+.tl-contest label {
+  display: block;
+  margin: 10px auto 6px auto;
+}
+.tl-contest label.selected, .tl-contest label.selected:hover {
+  background: #B5ECED;
+  color:#338695;
+}
+.nextBtn {
+  display:inline-block;
+  background: #B5ECED;
+  width: 9em;
+  margin: 2em 10px 10px 10px;
+  padding: 12px 2em;
+  border: 1px solid #6EBBC5;
+  border-radius: 5px;
+  color: #146070;
+  text-decoration:none;
+}
+.nextBtn:hover {
+  background: #338695;
+  color: #FFF;
+}
+
+input[type=radio], input[type=checkbox] {
+    display: none;
+}
+input[type=text], input[type=email], textarea {
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+  padding: 0.5em 2em;
+  border-radius:5px;
+  outline:none;
+  border: 1px solid #6EBBC5;
+  background: #B5ECED;
+}
+input[type=text]:focus,
+input[type=email]:focus,
+textarea:focus {
+  -webkit-box-shadow: 0 0 16px #FFF inset;
+  -o-box-shadow: 0 0 16px #FFF inset;
+  -moz-box-shadow: 0 0 16px #FFF inset;
+  box-shadow: 0 0 16px #FFF inset;
+  background: #C0EEEF;
+  border: 1px solid #98D3DA;
+  outline: none;
+}
+textarea {
+  margin: 1em auto;
+  height: 6em;
+}
+.alertBox {
+  background: #ff3300;
+  width: 96%;
+  padding: 2%;
+  color: #FFF;
+  margin: 3% auto;
+  text-align: left;
+}
+.alertBox:after {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: #ff3300;
+  position: absolute;
+  bottom: -10px;
+  left: 20%;
+  content: "";
+  -webkit-transform: translateX(-10px) rotate(45deg);
+          transform: translateX(-10px) rotate(45deg);
+  z-index: -1;
+}
+.alertBox.visible {
+  display: block;
+}
+.left {
+  text-align: left;
+}
+.center {
+  text-align: center;
+}
+
+.fading {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 300ms ease-out;
+  -moz-transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out;
+}
+.visible {
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+/* Modal popup */
+#modal {
+  display: block;
+  position: fixed;
+  width: 80%;
+  height: 450px;
+  background-color: #FFF;
+  background-color: rgba(255,255,255,0.95);
+  top: 0;
+  left: 0;
+  margin: 5%;
+  padding:15% 5%;
+  border: 1px solid #FFF;
+  border-radius:5px;
+  box-shadow:0 0 50px rgba(0,0,0,0.3);
+  overflow: scroll;
+  z-index: 999;
+}
+#modal a {
+  text-decoration: none;
+  color: #146070;
+  font-weight:bold;
+}
+/* Terms and conditions */
+ul.terms, ul.terms li {
+  padding: 0 0 0.5em 0;
+  list-style: none;
+}
+ul.terms li.fett {
+  margin-left: 3em;
+  padding-top: 1.2em;
+  padding-bottom: 0.4em;
+}
+ul.terms li.dot {
+  margin-left: 3em;
+  list-style: disc;
+}
+
+@media screen and (max-width: 600px) {
+  .tl-contest .radioLabel {
+    display: block;
+    width: 100%;
+  }
+  .nextBtn {
+    display: block;
+    margin: 5px auto;
+    width: initial;
+  }
+  .tl-contest, input, textarea {
+    font-size: 12px;
+  }
+}

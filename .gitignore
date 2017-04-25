@@ -1,0 +1,12 @@
+*.sublime-project
+*.sublime-workspace
+node_modules/
+contest-bg.jpg
+contestScripts/
+sftp-config.json
+package.json
+placeholderImgs/
+q0.jpg
+q1.jpg
+q2.jpg
+temp/
