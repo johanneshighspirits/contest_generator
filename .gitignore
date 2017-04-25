@@ -1,6 +1,8 @@
 *.sublime-project
 *.sublime-workspace
 node_modules/
+tl-config/
+bundle.js
 contest-bg.jpg
 contestScripts/
 sftp-config.json
@@ -10,3 +12,4 @@ q0.jpg
 q1.jpg
 q2.jpg
 temp/
+db.php

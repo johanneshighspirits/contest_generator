@@ -12,8 +12,19 @@ To draw random winners and see how many contestants have participated, an overvi
 
 ## Requirements
 * A server running `php`
-* `node.js` installed locally for previewing purposes
+* `Node.js` installed locally for previewing purposes
+
+## Test
+Start testing server from the command line
+```bash
+$ node server.js
+```
+Open `http://localhost:9999` in your browser
 
 ## Deploy
-* Upload all files in `/dist` to your server.
+Compile javascript
+```bash
+$ npm run build
+```
+Upload all files in `/dist` to your server.
 

@@ -460,15 +460,20 @@ var ContestGenerator = React.createClass({
     var renderContestScript = '<script type="text/javascript" src=' + Config.rootURL + '"/scripts/bundle.js?v=<?php echo mktime(); ?>"></script>\n' +
     '</body>\n' + 
     '</html>\n'; 
-    contestHtml = node.innerHTML.replace("<!-- #START#", "").replace("#END# -->", "") + generatedContest + renderContestScript;
+    contestHtml = node.innerHTML
+      .replace("<!-- #START#", "")
+      .replace("#END# -->", "")
+      .replace(/#IFRAME_DOMAIN#/g, Config.iFrameDomain)
+      .replace(/#MAIN_DOMAIN#/g, Config.mainDomain) + generatedContest + renderContestScript;
     editorialHtml = editorial.innerHTML
       .replace("<!-- #START#", "")
       .replace("#END# -->", "")
+      .replace(/#IFRAME_DOMAIN#/g, Config.iFrameDomain)
+      .replace(/#MAIN_DOMAIN#/g, Config.mainDomain)
       .replace("#CAMPAIGN_NAME#", this.state.contest.databaseTable)
       .replace("#END_DATE_YEAR#", this.state.contest.endDate.getFullYear())
       .replace("#END_DATE_MONTH#", this.state.contest.endDate.getMonth())
       .replace("#END_DATE_DAY#", this.state.contest.endDate.getDate());
-      ;
     
     var queryColumns = {"columns":[]};
     var questions = this.state.contest[this.state.selectedLanguages[0]].questions;

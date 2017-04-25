@@ -183,7 +183,7 @@ $('document').ready(function(){
     }
     window.parent.postMessage(
       message,
-      "http://www.travellink." + lang.toLowerCase()
+      "#MAIN_DOMAIN#" + lang.toLowerCase()
       );
   }
   updateHeight();
@@ -196,7 +196,7 @@ var isContest = true;
 <script type="text/javascript">
 // Resize iFrame to content size
 function listener(event) {
-  if(event.origin !== "http://travellink-campaign.com") {
+  if(event.origin !== "#IFRAME_DOMAIN#") {
     return;
   }else if(event.data.scrollToTarget !== undefined) {
     $('html,body').animate({scrollTop: event.data.scrollToTarget + $("#contest").offset().top - 20}, 200);
@@ -214,7 +214,7 @@ $(document).ready(function(e){
   var today = new Date();
   var endDate = new Date(#END_DATE_YEAR#, #END_DATE_MONTH#, #END_DATE_DAY#);
   if(today < endDate){
-    $("#contest").html('<iframe height="900" src="http://travellink-campaign.com/#LOWERCASE_LANG#/#CAMPAIGN_NAME#/?lang=#UPPERCASE_LANG#" frameborder="0" scrolling="no" seamless="seamless"></iframe>');
+    $("#contest").html('<iframe height="900" src="#IFRAME_DOMAIN#/#LOWERCASE_LANG#/#CAMPAIGN_NAME#/?lang=#UPPERCASE_LANG#" frameborder="0" scrolling="no" seamless="seamless"></iframe>');
   }
 });
 </script>

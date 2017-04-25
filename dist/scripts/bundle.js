@@ -18951,8 +18951,19 @@ if (isContest) {
 }
 
 },{"./modules/contestComponents":160,"./modules/contestGenerator":161,"react":157,"react-dom":28}],159:[function(require,module,exports){
-/* This is your root URL. Relative or absolute */
+/* This is your root URL (where the contest generator is uploaded. Relative or absolute */
 var rootURL = "/";
+
+/* Discussion:
+If iFrame will be on the same domain as the parent editorial,
+iFrameDomain and mainDomain can be identical. If however, they're on
+different domains, these variables are needed to make the competition
+resize itself properly.
+
+This is the domain where you will upload the final competition */
+var iFrameDomain = "http://<domain>";
+/* This is your main site domain, where the html that contains the iframe resides. */
+var mainDomain = "http://<domain>";
 
 /**
 For identical contests running in different countries, you
@@ -20013,9 +20024,8 @@ var ContestGenerator = React.createClass({
     var contestHtml, editorialHtml;
     var generatedContest = '\n' + 'var contest = ' + JSON.stringify(this.state.contest) + ';\n' + '</script>\n';
     var renderContestScript = '<script type="text/javascript" src=' + Config.rootURL + '"/scripts/bundle.js?v=<?php echo mktime(); ?>"></script>\n' + '</body>\n' + '</html>\n';
-    contestHtml = node.innerHTML.replace("<!-- #START#", "").replace("#END# -->", "") + generatedContest + renderContestScript;
-    editorialHtml = editorial.innerHTML.replace("<!-- #START#", "").replace("#END# -->", "").replace("#CAMPAIGN_NAME#", this.state.contest.databaseTable).replace("#END_DATE_YEAR#", this.state.contest.endDate.getFullYear()).replace("#END_DATE_MONTH#", this.state.contest.endDate.getMonth()).replace("#END_DATE_DAY#", this.state.contest.endDate.getDate());
-    ;
+    contestHtml = node.innerHTML.replace("<!-- #START#", "").replace("#END# -->", "").replace(/#IFRAME_DOMAIN#/g, Config.iFrameDomain).replace(/#MAIN_DOMAIN#/g, Config.mainDomain) + generatedContest + renderContestScript;
+    editorialHtml = editorial.innerHTML.replace("<!-- #START#", "").replace("#END# -->", "").replace(/#IFRAME_DOMAIN#/g, Config.iFrameDomain).replace(/#MAIN_DOMAIN#/g, Config.mainDomain).replace("#CAMPAIGN_NAME#", this.state.contest.databaseTable).replace("#END_DATE_YEAR#", this.state.contest.endDate.getFullYear()).replace("#END_DATE_MONTH#", this.state.contest.endDate.getMonth()).replace("#END_DATE_DAY#", this.state.contest.endDate.getDate());
 
     var queryColumns = { "columns": [] };
     var questions = this.state.contest[this.state.selectedLanguages[0]].questions;
