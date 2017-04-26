@@ -313,7 +313,7 @@ var LanguageInput = React.createClass({
   },
   componentWillReceiveProps: function(newProps) {
     this.setState({
-      activeInput: newProps.activeInput
+      activeInput: newProps.activeInput > this.state.activeInput ? newProps.activeInput : this.state.activeInput
     })
   },
   render: function(){
@@ -393,7 +393,7 @@ var ContestGenerator = React.createClass({
     }
     this.setState({
       contest: contest,
-      activeInput: activeInputs[targetId] + 1
+      activeInput: activeInputs[targetId] + 1 > this.state.activeInput ? activeInputs[targetId] + 1 : this.state.activeInput
     });
   },
   updateQuestion: function(question, questionNr, language) {
@@ -406,7 +406,7 @@ var ContestGenerator = React.createClass({
     this.setState({
       contest: contest,
       nrOfQuestions: questionNr + 1,
-      activeInput: activeInputs["questions"] + questionNr
+      activeInput: activeInputs["questions"] + questionNr > this.state.activeInput ? activeInputs["questions"] + questionNr : this.state.activeInput
     });
   },
   addStaticText: function(text, indexKey) {
@@ -518,6 +518,17 @@ var ContestGenerator = React.createClass({
       console.log(response);
     });
     },
+    imagesNeeded: function() {
+      var imagesNeeded = [];
+      this.state.selectedLanguages.forEach(function(lang){
+        imagesNeeded.push(<li key={lang}><p><b>{lang}:</b></p></li>);
+        imagesNeeded.push(<li key={lang + "bg"}><p>{Config.iFrameDomain}/{lang.toLowerCase()}/{this.state.contest.campaign.charAt(0).toLowerCase()}/contest-bg.jpg</p></li>);
+        for (var img = 0; img < this.state.nrOfQuestions; img++) {
+          imagesNeeded.push(<li key={img}><p>{Config.iFrameDomain}/{lang.toLowerCase()}/{this.state.contest.campaign.charAt(0).toLowerCase()}/q{img}.jpg</p></li>);
+        }
+      }, this);
+      return imagesNeeded;
+    },
     render: function() {
       var languageSelectors = [];
       Config.possibleLanguages.map(function(lang, i) {
@@ -562,7 +573,8 @@ var ContestGenerator = React.createClass({
       var existingTables = [];
       this.state.existingTables.forEach(function(table, i){
         existingTables.push(<li key={"table" + i}>Existing database table: <b>{table}</b></li>);
-      });
+      });      
+      
       return (
         <div>
           <form className="tl-contestGenerator">
@@ -597,13 +609,17 @@ var ContestGenerator = React.createClass({
               <li><p>Download <a target="_blank" href={"download.php?type=application/zip&file=" + this.state.gotResponse.zipFile + "&filename=" + this.state.gotResponse.contestName + ".zip"}>{this.state.gotResponse.contestName}.zip</a></p></li>
               <li><p>Unzip</p></li>
               <li><p>The unzipped folder consists of {this.state.selectedLanguages.length} folder{this.state.selectedLanguages.length > 1 ? "s" : ""} named <b>{this.state.selectedLanguages.join(", ")}</b>.</p></li>
-              <li><p>The content of {this.state.selectedLanguages.length > 1 ? "each of these folders" : "this folder"} should be uploaded to <b>travellink-campaign.com/public_html/</b><i>[se, no, dk or fi]</i><b>/</b>.</p></li>
+              <li><p>The content of {this.state.selectedLanguages.length > 1 ? "each of these folders" : "this folder"} should be uploaded to <b>{Config.iFrameDomain}/</b><i>[se, no, dk or fi]</i><b>/</b>.</p></li>
             </ul>
             <h2>Images needed</h2>
             <ul>
               <li><p>The contest background is a JPEG image with a fixed width of 720px. The image must be at least 1200px tall to cover the entire page but can be taller if necessary. Since the top heading and the contest copy is white, make sure that the upper half of the background image is dark and the text is readable.</p><p>Name the file <b>contest-bg.jpg</b></p></li>
               <li><p>For every question/motivering a JPEG image should be supplied. Dimensions: 540x300px. Name the files <b>q0.jpg</b>, <b>q1.jpg</b>, <b>q2.jpg</b> etc... </p></li>
-              <li><p>Upload the images to the same folder(s). If this is a multiple language contest, make sure to upload the images to every language's folder.</p></li>
+              <li><p>Upload the images to the same folder{this.state.selectedLanguages.length > 1 ? "s. Since this is a multiple language contest, make sure to upload the images to every language's folder." : "."}</p></li>
+            </ul>
+            <p>Below are all the images you need to upload:</p>
+            <ul>
+              {imagesNeeded()}
             </ul>
             <h2>Add the Editorial</h2>
             <ul>
