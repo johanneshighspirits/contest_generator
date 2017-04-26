@@ -28,5 +28,7 @@ var possibleLanguages = [
 
 module.exports = {
 	possibleLanguages: possibleLanguages,
-  rootURL: rootURL
+  rootURL: rootURL,
+  iFrameDomain: iFrameDomain,
+  mainDomain: mainDomain
 };
