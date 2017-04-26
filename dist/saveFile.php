@@ -1,7 +1,7 @@
 <?php
-$root = $_SERVER['DOCUMENT_ROOT'];
-$mysqliPath = $root."/htmlprinter/ReactContestGenerator/mysqli.php";
-require_once($mysqliPath);
+
+  $dbPath = __DIR__."/contests/db.php"; 
+  require_once($dbPath);
 
 function test_input($data){
   $data = trim($data);
@@ -90,7 +90,7 @@ if($result = $conn->query($query)) {
       $response->tableCreated = true;
 
       // Add contest to contests table
-      $addContestQuery = "INSERT INTO contests (name, table, endDate) VALUES ($contestName, $tableName, $endDate)";
+      $addContestQuery = "INSERT INTO contests (name, contest_table_name, endDate) VALUES ($contestName, $tableName, $endDate)";
       if($conn->query($addContestQuery) === TRUE) {
         $response->addedToContests = "Successfully added to contests table";
       }else{

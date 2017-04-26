@@ -494,7 +494,7 @@ var ContestGenerator = React.createClass({
       console.log(res);
       if (res.error != undefined) {
         if (res.error == "ERROR_TABLE_EXISTS") {
-          var createNewTable = confirm("The database already contains a table named '" + this.state.contest.databaseTable + "'. If you want to use the existing table, click OK. If not, click cancel and then choose a new name for your campaign.");
+          var createNewTable = confirm("WARNING: The database already contains a table named '" + this.state.contest.databaseTable + "'. If you want to use the existing table, click OK. If not, click cancel and then choose a new name for your campaign.");
           if (createNewTable) {
             console.log("Using existing data table '" + this.state.contest.databaseTable + "'.");
             this.setState({

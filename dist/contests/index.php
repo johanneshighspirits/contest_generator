@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
     $name = $row["name"];
-    $tableName = $row["table"];
+    $tableName = $row["contest_table_name"];
     $endDate = $row["endDate"];
     echo "  {\n";
     echo "    \"name\": \"$name\",\n";
